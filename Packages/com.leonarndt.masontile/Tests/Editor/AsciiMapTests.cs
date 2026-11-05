@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 
-namespace TileKit.Tests
+namespace MasonTile.Tests
 {
     public class AsciiMapTests : TilemapFixture
     {

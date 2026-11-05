@@ -5,20 +5,20 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace TileKit.Editor
+namespace MasonTile.Editor
 {
     /// <summary>Creates a <see cref="TileLegend"/> from selected tiles, folders, or Tile Palettes.</summary>
     public static class LegendBuilder
     {
         const string k_SymbolPool = "#=+*%@&$~^:;!|ox0123456789abcdefghijklmnpqrstuvwyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-        [MenuItem("Assets/TileKit/Create Legend From Selection", priority = 1000)]
+        [MenuItem("Assets/MasonTile/Create Legend From Selection", priority = 1000)]
         static void CreateFromSelection()
         {
             var tiles = CollectTiles(Selection.objects);
             if (tiles.Count == 0)
             {
-                EditorUtility.DisplayDialog("TileKit", "Select tiles, folders containing tiles, or a Tile Palette.", "OK");
+                EditorUtility.DisplayDialog("MasonTile", "Select tiles, folders containing tiles, or a Tile Palette.", "OK");
                 return;
             }
 
@@ -30,10 +30,10 @@ namespace TileKit.Editor
             AssetDatabase.SaveAssets();
             Selection.activeObject = legend;
             EditorGUIUtility.PingObject(legend);
-            Debug.Log($"[TileKit] Created {path} with {tiles.Count} tiles. {legend.Describe()}", legend);
+            Debug.Log($"[MasonTile] Created {path} with {tiles.Count} tiles. {legend.Describe()}", legend);
         }
 
-        [MenuItem("Assets/TileKit/Create Legend From Selection", true)]
+        [MenuItem("Assets/MasonTile/Create Legend From Selection", true)]
         static bool CanCreateFromSelection() => Selection.objects.Length > 0;
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace TileKit.Editor
                 var symbol = PickSymbol(tile.name, used);
                 if (symbol == '\0')
                 {
-                    Debug.LogWarning($"[TileKit] Ran out of symbols; '{tile.name}' was skipped.");
+                    Debug.LogWarning($"[MasonTile] Ran out of symbols; '{tile.name}' was skipped.");
                     continue;
                 }
                 used.Add(symbol);

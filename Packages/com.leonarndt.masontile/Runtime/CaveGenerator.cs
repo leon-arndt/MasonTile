@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace TileKit
+namespace MasonTile
 {
     /// <summary>
     /// Cellular-automata caves. Deterministic per seed, so a generated level can be reproduced

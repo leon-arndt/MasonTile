@@ -4,13 +4,13 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace TileKit
+namespace MasonTile
 {
     /// <summary>
     /// Maps single characters to tiles so tilemaps can be read and written as text.
     /// Text is the shared format for level files, the text view window, tests, and LLM agents.
     /// </summary>
-    [CreateAssetMenu(menuName = "TileKit/Tile Legend", fileName = "TileLegend", order = 0)]
+    [CreateAssetMenu(menuName = "MasonTile/Tile Legend", fileName = "TileLegend", order = 0)]
     public class TileLegend : ScriptableObject
     {
         /// <summary>Always means "no tile". Writing it erases the cell.</summary>

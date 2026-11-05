@@ -2,12 +2,12 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace TileKit.Tests
+namespace MasonTile.Tests
 {
     /// <summary>Creates a Grid + Tilemap with a legend of '#'=wall, 'f'=floor, '~'=water; destroys it afterwards.</summary>
     public abstract class TilemapFixture
     {
-        protected const string MapName = "TileKitTest_Map";
+        protected const string MapName = "MasonTileTest_Map";
 
         protected GameObject GridGo;
         protected Tilemap Map;
@@ -17,7 +17,7 @@ namespace TileKit.Tests
         [SetUp]
         public virtual void SetUp()
         {
-            GridGo = new GameObject("TileKitTest_Grid", typeof(Grid));
+            GridGo = new GameObject("MasonTileTest_Grid", typeof(Grid));
             var mapGo = new GameObject(MapName, typeof(Tilemap), typeof(TilemapRenderer));
             mapGo.transform.SetParent(GridGo.transform);
             Map = mapGo.GetComponent<Tilemap>();

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace TileKit
+namespace MasonTile
 {
     /// <summary>Outcome of a tilemap edit: how many cells actually changed, and where.</summary>
     public readonly struct TileEdit

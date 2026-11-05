@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace TileKit.Editor
+namespace MasonTile.Editor
 {
     /// <summary>
     /// Text snapshot of a tilemap region. First row is the top (highest y); (OriginX, OriginY) is the
@@ -122,7 +122,7 @@ namespace TileKit.Editor
             }
 
             error = guids.Length == 0
-                ? $"Tilemap '{tilemap.name}' has no legend. Create one (Assets > Create > TileKit > Tile Legend) and add a TileLegendBinding to the Tilemap."
+                ? $"Tilemap '{tilemap.name}' has no legend. Create one (Assets > Create > MasonTile > Tile Legend) and add a TileLegendBinding to the Tilemap."
                 : $"Tilemap '{tilemap.name}' has no TileLegendBinding and the project has {guids.Length} legends; add a binding to choose one.";
             return false;
         }
@@ -202,7 +202,7 @@ namespace TileKit.Editor
         {
             if (!ValidateArea(rect, out var error) || !legend.TryResolve(tile, out var t, out error)) return CommandResult.Fail(error);
             var verb = outlineOnly ? "Outline" : "Fill";
-            return Mutate(tm, legend, $"TileKit {verb}",
+            return Mutate(tm, legend, $"MasonTile {verb}",
                 () => outlineOnly ? TilemapOps.Outline(tm, rect, t) : TilemapOps.Fill(tm, rect, t),
                 $"{verb} x={rect.xMin} y={rect.yMin} width={rect.width} height={rect.height} with '{legend.GetSymbol(t)}'");
         }
@@ -212,7 +212,7 @@ namespace TileKit.Editor
             if (!legend.TryResolve(tile, out var t, out var error)) return CommandResult.Fail(error);
             var length = Mathf.Max(Mathf.Abs(to.x - from.x), Mathf.Abs(to.y - from.y)) + 1;
             if (length > MaxCellsPerCommand) return CommandResult.Fail($"Line is {length} cells; the limit is {MaxCellsPerCommand}.");
-            return Mutate(tm, legend, "TileKit Line", () => TilemapOps.Line(tm, from, to, t),
+            return Mutate(tm, legend, "MasonTile Line", () => TilemapOps.Line(tm, from, to, t),
                 $"Line ({from.x},{from.y})->({to.x},{to.y}) with '{legend.GetSymbol(t)}'");
         }
 
@@ -227,7 +227,7 @@ namespace TileKit.Editor
                 return CommandResult.Fail($"Start ({start.x},{start.y}) is outside the fill limit x={region.xMin} y={region.yMin} width={region.width} height={region.height}.");
 
             var touched = false;
-            var result = Mutate(tm, legend, "TileKit Flood Fill", () => TilemapOps.FloodFill(tm, start, t, region, out touched),
+            var result = Mutate(tm, legend, "MasonTile Flood Fill", () => TilemapOps.FloodFill(tm, start, t, region, out touched),
                 $"Flood fill from ({start.x},{start.y}) with '{legend.GetSymbol(t)}'");
             if (touched)
                 result.Message += " Warning: the fill reached the edge of the limit area, so the region was probably not enclosed.";
@@ -241,7 +241,7 @@ namespace TileKit.Editor
             if ((long)parsed.Width * parsed.Height > MaxCellsPerCommand)
                 return CommandResult.Fail($"Text is {parsed.Width}x{parsed.Height}; the limit is {MaxCellsPerCommand} cells.");
 
-            return Mutate(tm, legend, "TileKit Write Text", () => AsciiMap.Write(tm, origin, parsed, legend),
+            return Mutate(tm, legend, "MasonTile Write Text", () => AsciiMap.Write(tm, origin, parsed, legend),
                 $"Wrote {parsed.Width}x{parsed.Height} text with bottom-left at ({origin.x},{origin.y})");
         }
 
@@ -253,7 +253,7 @@ namespace TileKit.Editor
             var region = area ?? TilemapOps.UsedBounds(tm);
             if (region.width <= 0) return new CommandResult { Success = true, Message = "Tilemap is empty; nothing to replace." };
             if (!ValidateArea(region, out error)) return CommandResult.Fail(error);
-            return Mutate(tm, legend, "TileKit Replace", () => TilemapOps.Replace(tm, region, from, to),
+            return Mutate(tm, legend, "MasonTile Replace", () => TilemapOps.Replace(tm, region, from, to),
                 $"Replaced '{legend.GetSymbol(from)}' with '{legend.GetSymbol(to)}'");
         }
 
@@ -268,7 +268,7 @@ namespace TileKit.Editor
             if (smoothSteps < 0 || smoothSteps > 20) return CommandResult.Fail("smoothSteps must be between 0 and 20.");
 
             var walls = CaveGenerator.Generate(rect.width, rect.height, seed, fillPercent, smoothSteps);
-            return Mutate(tm, legend, "TileKit Generate Cave", () => CaveGenerator.Paint(tm, rect.position, walls, wall, floor),
+            return Mutate(tm, legend, "MasonTile Generate Cave", () => CaveGenerator.Paint(tm, rect.position, walls, wall, floor),
                 $"Generated cave (seed {seed}) at x={rect.xMin} y={rect.yMin} width={rect.width} height={rect.height}");
         }
 

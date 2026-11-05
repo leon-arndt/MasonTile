@@ -1,11 +1,11 @@
 using System;
 using System.Threading.Tasks;
-using TileKit.Editor;
+using MasonTile.Editor;
 using Unity.AI.Assistant.FunctionCalling;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace TileKit.Agent
+namespace MasonTile.Agent
 {
     /// <summary>
     /// Unity AI Assistant tools for operating 2D tilemaps. Thin wrappers over <see cref="TilemapCommands"/>:
@@ -31,14 +31,14 @@ namespace TileKit.Agent
         [AgentTool(
             "List the Tilemaps in the open scene with their used area, legend (symbol to tile mapping), and tile counts. " +
             "Call this first to learn tilemap names and which symbols are available.",
-            "TileKit.ListTilemaps")]
+            "MasonTile.ListTilemaps")]
         public static CommandResult ListTilemaps() => Unwrap(TilemapCommands.List());
 
         [AgentTool(
             "Read a region of a Tilemap as a text grid using its legend. With width/height 0 it reads the whole used area. " +
             "Large regions are truncated to 64x64; read in pages by passing x/y/width/height." + k_Coords +
             "'.' is empty, '?' is a tile missing from the legend.",
-            "TileKit.ReadTilemap")]
+            "MasonTile.ReadTilemap")]
         public static CommandResult ReadTilemap(
             [ToolParameter(k_TilemapParam)] string tilemap,
             [ToolParameter("Left-most cell x of the region. Ignored when width or height is 0.")] int x = 0,
@@ -54,7 +54,7 @@ namespace TileKit.Agent
             "Fill a rectangle of cells with one tile, or draw only its 1-cell border (outlineOnly). " +
             "Use for floors, walls, rooms, and clearing areas (tile 'empty')." + k_Coords +
             "Returns the number of cells changed and a snapshot of the result.",
-            "TileKit.PaintRect")]
+            "MasonTile.PaintRect")]
         public static async Task<CommandResult> PaintRect(
             ToolExecutionContext context,
             [ToolParameter(k_TilemapParam)] string tilemap,
@@ -72,7 +72,7 @@ namespace TileKit.Agent
         [AgentTool(
             "Draw a straight 1-cell-wide line between two cells (both ends inclusive). Works for horizontal, vertical, and diagonal lines." +
             k_Coords,
-            "TileKit.DrawLine")]
+            "MasonTile.DrawLine")]
         public static async Task<CommandResult> DrawLine(
             ToolExecutionContext context,
             [ToolParameter(k_TilemapParam)] string tilemap,
@@ -89,7 +89,7 @@ namespace TileKit.Agent
         [AgentTool(
             "Flood fill: replace the 4-connected region of cells that share the start cell's tile (including empty cells). " +
             "Stays within the used area plus a 1-cell margin; the result warns if the region was not enclosed." + k_Coords,
-            "TileKit.FloodFill")]
+            "MasonTile.FloodFill")]
         public static async Task<CommandResult> FloodFill(
             ToolExecutionContext context,
             [ToolParameter(k_TilemapParam)] string tilemap,
@@ -105,7 +105,7 @@ namespace TileKit.Agent
             "Write a text grid of legend symbols into the Tilemap. Best for hand-designed layouts and detailed edits. " +
             "'.' erases a cell, a space leaves it unchanged, and short rows are padded with spaces." + k_Coords +
             "Example rows \"####\\n#..#\\n####\" at x=0,y=0 puts the top row at y=2.",
-            "TileKit.WriteText")]
+            "MasonTile.WriteText")]
         public static async Task<CommandResult> WriteText(
             ToolExecutionContext context,
             [ToolParameter(k_TilemapParam)] string tilemap,
@@ -119,7 +119,7 @@ namespace TileKit.Agent
 
         [AgentTool(
             "Replace every occurrence of one tile with another across the Tilemap's used area (e.g. swap 'grass' for 'snow').",
-            "TileKit.ReplaceTile")]
+            "MasonTile.ReplaceTile")]
         public static async Task<CommandResult> ReplaceTile(
             ToolExecutionContext context,
             [ToolParameter(k_TilemapParam)] string tilemap,
@@ -133,7 +133,7 @@ namespace TileKit.Agent
         [AgentTool(
             "Generate an organic cave in a rectangle using cellular automata. The border is always wall. " +
             "The same seed and parameters always produce the same cave; try other seeds for variations." + k_Coords,
-            "TileKit.GenerateCave")]
+            "MasonTile.GenerateCave")]
         public static async Task<CommandResult> GenerateCave(
             ToolExecutionContext context,
             [ToolParameter(k_TilemapParam)] string tilemap,

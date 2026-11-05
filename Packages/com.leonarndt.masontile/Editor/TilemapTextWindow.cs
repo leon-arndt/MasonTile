@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UIElements;
 
-namespace TileKit.Editor
+namespace MasonTile.Editor
 {
     /// <summary>
     /// View and edit a tilemap as text. Read pulls the used area into the text box, Apply writes it
@@ -20,8 +20,8 @@ namespace TileKit.Editor
         Label m_Status;
         Label m_LegendLabel;
 
-        [MenuItem("Window/TileKit/Tilemap Text View")]
-        public static void Open() => GetWindow<TilemapTextWindow>("Tilemap Text");
+        [MenuItem("Window/MasonTile/Tilemap Text View")]
+        public static void Open() => GetWindow<TilemapTextWindow>("MasonTile Text");
 
         void CreateGUI()
         {
@@ -79,7 +79,7 @@ namespace TileKit.Editor
             var legend = m_LegendField.value as TileLegend;
             if (legend == null)
             {
-                m_LegendLabel.text = "Assign a Tile Legend (Assets > Create > TileKit > Tile Legend).";
+                m_LegendLabel.text = "Assign a Tile Legend (Assets > Create > MasonTile > Tile Legend).";
                 return;
             }
             var problems = legend.Validate();

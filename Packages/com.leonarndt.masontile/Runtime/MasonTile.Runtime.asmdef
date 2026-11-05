@@ -1,6 +1,6 @@
 {
-    "name": "TileKit.Runtime",
-    "rootNamespace": "TileKit",
+    "name": "MasonTile.Runtime",
+    "rootNamespace": "MasonTile",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

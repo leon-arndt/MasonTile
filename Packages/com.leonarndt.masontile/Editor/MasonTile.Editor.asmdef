@@ -1,8 +1,8 @@
 {
-    "name": "TileKit.Editor",
-    "rootNamespace": "TileKit.Editor",
+    "name": "MasonTile.Editor",
+    "rootNamespace": "MasonTile.Editor",
     "references": [
-        "TileKit.Runtime"
+        "MasonTile.Runtime"
     ],
     "includePlatforms": [
         "Editor"

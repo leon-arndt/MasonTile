@@ -2,11 +2,11 @@ using System;
 using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
-using TileKit.Editor;
+using MasonTile.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace TileKit.Tests
+namespace MasonTile.Tests
 {
     /// <summary>
     /// Tests for the structured command layer that the editor UI and agent tools share. These
@@ -48,7 +48,7 @@ namespace TileKit.Tests
         [Test]
         public void TilemapLookup_AcceptsHierarchyPathAndIgnoresCase()
         {
-            Assert.That(TilemapCommands.TryFindTilemap("TileKitTest_Grid/" + MapName, out var a, out _), Is.True);
+            Assert.That(TilemapCommands.TryFindTilemap("MasonTileTest_Grid/" + MapName, out var a, out _), Is.True);
             Assert.That(TilemapCommands.TryFindTilemap(MapName.ToUpperInvariant(), out var b, out _), Is.True);
             Assert.That(a, Is.SameAs(Map));
             Assert.That(b, Is.SameAs(Map));
@@ -150,7 +150,7 @@ namespace TileKit.Tests
         static MethodInfo[] ToolMethods()
         {
             // Looked up by name: the test assembly must not depend on the optional AI Assistant package.
-            var tools = Type.GetType("TileKit.Agent.TilemapAgentTools, TileKit.Agent");
+            var tools = Type.GetType("MasonTile.Agent.TilemapAgentTools, MasonTile.Agent");
             if (tools == null) return Array.Empty<MethodInfo>();
             return tools.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static)
                 .Where(m => m.GetCustomAttributes().Any(a => a.GetType().Name == "AgentToolAttribute"))
@@ -161,7 +161,7 @@ namespace TileKit.Tests
         public void AgentTools_AreRegisteredWithValidSignatures()
         {
             var methods = ToolMethods();
-            if (methods.Length == 0) Assert.Ignore("TileKit.Agent is not compiled (AI Assistant package missing).");
+            if (methods.Length == 0) Assert.Ignore("MasonTile.Agent is not compiled (AI Assistant package missing).");
 
             Assert.That(methods.Length, Is.GreaterThanOrEqualTo(8));
             foreach (var m in methods)
@@ -169,7 +169,7 @@ namespace TileKit.Tests
                 var attr = m.GetCustomAttributes().First(a => a.GetType().Name == "AgentToolAttribute");
                 var id = (string)attr.GetType().GetField("Id").GetValue(attr);
                 var description = (string)attr.GetType().GetField("Description").GetValue(attr);
-                Assert.That(id, Does.StartWith("TileKit."), m.Name);
+                Assert.That(id, Does.StartWith("MasonTile."), m.Name);
                 Assert.That(description.Length, Is.GreaterThan(40), $"{m.Name}: describe the tool well enough for an LLM");
 
                 foreach (var p in m.GetParameters().Where(p => p.ParameterType.Name != "ToolExecutionContext"))

@@ -4,7 +4,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace TileKit
+namespace MasonTile
 {
     /// <summary>
     /// Text representation of a tilemap region.

@@ -2,7 +2,7 @@ using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 
-namespace TileKit.Tests
+namespace MasonTile.Tests
 {
     public class TilemapOpsTests : TilemapFixture
     {

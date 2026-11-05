@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace TileKit
+namespace MasonTile
 {
     /// <summary>
     /// Stateless tilemap operations on layer z = 0. A null tile erases.
-    /// Works in Edit and Play mode; undo is the caller's job (see TileKit.Editor.TilemapCommands).
+    /// Works in Edit and Play mode; undo is the caller's job (see MasonTile.Editor.TilemapCommands).
     /// </summary>
     public static class TilemapOps
     {

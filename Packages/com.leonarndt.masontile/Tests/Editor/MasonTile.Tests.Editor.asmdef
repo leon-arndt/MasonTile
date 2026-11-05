@@ -1,11 +1,11 @@
 {
-    "name": "TileKit.Tests.Editor",
-    "rootNamespace": "TileKit.Tests",
+    "name": "MasonTile.Tests.Editor",
+    "rootNamespace": "MasonTile.Tests",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "TileKit.Runtime",
-        "TileKit.Editor"
+        "MasonTile.Runtime",
+        "MasonTile.Editor"
     ],
     "includePlatforms": [
         "Editor"

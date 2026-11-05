@@ -4,7 +4,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace TileKit.Editor
+namespace MasonTile.Editor
 {
     /// <summary>
     /// Generates flat-colour placeholder tiles plus a matching legend, so level layout can start
@@ -12,7 +12,7 @@ namespace TileKit.Editor
     /// </summary>
     public static class PlaceholderTiles
     {
-        const string k_Folder = "Assets/TileKit/Placeholders";
+        const string k_Folder = "Assets/MasonTile/Placeholders";
         const int k_Size = 16;
 
         static readonly (char symbol, string name, Color fill, Color edge)[] k_Defaults =
@@ -34,7 +34,7 @@ namespace TileKit.Editor
             "#..c..........*..#\n" +
             "##################";
 
-        [MenuItem("Tools/TileKit/Create Placeholder Tiles + Legend")]
+        [MenuItem("Tools/MasonTile/Create Placeholder Tiles + Legend")]
         public static TileLegend CreatePlaceholders()
         {
             Directory.CreateDirectory(k_Folder);
@@ -51,11 +51,11 @@ namespace TileKit.Editor
 
             EditorUtility.SetDirty(legend);
             AssetDatabase.SaveAssets();
-            Debug.Log($"[TileKit] Placeholder tiles ready in {k_Folder}. {legend.Describe()}", legend);
+            Debug.Log($"[MasonTile] Placeholder tiles ready in {k_Folder}. {legend.Describe()}", legend);
             return legend;
         }
 
-        [MenuItem("Tools/TileKit/Create Demo Tilemap In Scene")]
+        [MenuItem("Tools/MasonTile/Create Demo Tilemap In Scene")]
         public static void CreateDemoTilemap()
         {
             var legend = CreatePlaceholders();
@@ -75,7 +75,7 @@ namespace TileKit.Editor
             var result = TilemapCommands.WriteText(go.GetComponent<Tilemap>(), legend, Vector2Int.zero, k_DemoLevel);
             Selection.activeGameObject = go;
             EditorSceneManager.MarkSceneDirty(go.scene);
-            Debug.Log($"[TileKit] {result.Message}", go);
+            Debug.Log($"[MasonTile] {result.Message}", go);
         }
 
         static Tile CreateTile(string tileName, Color fill, Color edge)

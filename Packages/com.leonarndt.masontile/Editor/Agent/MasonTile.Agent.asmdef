@@ -1,9 +1,9 @@
 {
-    "name": "TileKit.Agent",
-    "rootNamespace": "TileKit.Agent",
+    "name": "MasonTile.Agent",
+    "rootNamespace": "MasonTile.Agent",
     "references": [
-        "TileKit.Runtime",
-        "TileKit.Editor",
+        "MasonTile.Runtime",
+        "MasonTile.Editor",
         "Unity.AI.Assistant.Runtime"
     ],
     "includePlatforms": [
@@ -15,13 +15,13 @@
     "precompiledReferences": [],
     "autoReferenced": false,
     "defineConstraints": [
-        "TILEKIT_AI_ASSISTANT"
+        "MASONTILE_AI_ASSISTANT"
     ],
     "versionDefines": [
         {
             "name": "com.unity.ai.assistant",
             "expression": "2.0.0",
-            "define": "TILEKIT_AI_ASSISTANT"
+            "define": "MASONTILE_AI_ASSISTANT"
         }
     ],
     "noEngineReferences": false
