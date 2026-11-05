@@ -1,0 +1,28 @@
+{
+    "name": "TileKit.Agent",
+    "rootNamespace": "TileKit.Agent",
+    "references": [
+        "TileKit.Runtime",
+        "TileKit.Editor",
+        "Unity.AI.Assistant.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "TILEKIT_AI_ASSISTANT"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.ai.assistant",
+            "expression": "2.0.0",
+            "define": "TILEKIT_AI_ASSISTANT"
+        }
+    ],
+    "noEngineReferences": false
+}
