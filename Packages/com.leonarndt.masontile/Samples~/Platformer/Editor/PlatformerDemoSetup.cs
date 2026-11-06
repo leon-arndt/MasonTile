@@ -24,7 +24,7 @@ namespace MasonTile.Samples.Platformer.Editor
             EditorApplication.delayCall += () =>
             {
                 var root = FindRoot();
-                if (root != null && !File.Exists($"{root}/{k_SceneName}")) Build(root);
+                if (root != null && !File.Exists($"{root}/{k_SceneName}")) Build(root, fromMenu: false);
             };
         }
 
@@ -33,7 +33,7 @@ namespace MasonTile.Samples.Platformer.Editor
         {
             var root = FindRoot();
             if (root == null) Debug.LogError("[MasonTile] Could not find the Platformer Demo sample folder.");
-            else Build(root);
+            else Build(root, fromMenu: true);
         }
 
         /// <summary>The sample's root folder, found via its first level file.</summary>
@@ -45,7 +45,8 @@ namespace MasonTile.Samples.Platformer.Editor
             return level == null ? null : Path.GetDirectoryName(Path.GetDirectoryName(level))?.Replace('\\', '/');
         }
 
-        static void Build(string root)
+        /// <param name="fromMenu">Rebuild menu: open the scene and play the build animation.</param>
+        static void Build(string root, bool fromMenu)
         {
             var legend = BuildTiles($"{root}/Tiles");
             var playerSprite = PlayerArt().SaveSprite($"{root}/Tiles/Art/player.png");
@@ -109,7 +110,7 @@ namespace MasonTile.Samples.Platformer.Editor
             AssetDatabase.SaveAssets();
             Debug.Log($"[MasonTile] Platformer Demo ready: {scenePath}. Levels are the .txt files in {root}/Levels.",
                 AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath));
-            DemoMenu.ConsumeOpenRequest(DemoMenu.PlatformerSample, scenePath);
+            DemoMenu.Present(DemoMenu.PlatformerSample, scenePath, open: fromMenu);
         }
 
         static Vector3 StartPosition(Tilemap tilemap, TileBase startTile)

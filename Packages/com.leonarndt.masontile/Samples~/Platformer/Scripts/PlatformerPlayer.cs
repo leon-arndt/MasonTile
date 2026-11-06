@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -33,6 +34,11 @@ namespace MasonTile.Samples.Platformer
         [Range(0f, 1f), Tooltip("Upward speed multiplier when jump is released early (short hops).")]
         public float jumpCut = 0.5f;
 
+        [Header("Level build animation")]
+        [Tooltip("Build each level tile by tile (left to right) when it starts.")]
+        public bool animateLevelBuild = true;
+        public float buildSeconds = 1.4f;
+
         static readonly Vector3[] k_TileProbes = { Vector3.zero, new(0f, -0.4f, 0f), new(0f, 0.4f, 0f) };
 
         Rigidbody2D m_Body;
@@ -45,6 +51,7 @@ namespace MasonTile.Samples.Platformer
         int m_LevelIndex;
         int m_Coins, m_TotalCoins, m_Deaths;
         bool m_Finished;
+        bool m_Building;
         Vector3 m_Spawn;
         float m_KillY;
         float m_LastGrounded = -1f, m_LastJumpPressed = -1f;
@@ -65,11 +72,13 @@ namespace MasonTile.Samples.Platformer
             var used = TilemapOps.UsedBounds(level);
             m_FirstLevelOrigin = used.position;
             m_FirstLevelText = AsciiMap.Read(level, used, legend);
-            BeginLevel();
+            if (animateLevelBuild) StartCoroutine(BuildThenBegin(TileBuildAnimation.Rebuild(level, BuildOrder.SweepRight, buildSeconds)));
+            else BeginLevel();
         }
 
         void Update()
         {
+            if (m_Building) return;
             if (DemoInput.RestartPressed)
             {
                 if (m_Finished) { m_Finished = false; m_LevelIndex = 0; }
@@ -86,6 +95,7 @@ namespace MasonTile.Samples.Platformer
 
         void FixedUpdate()
         {
+            if (m_Building) return;
             var v = m_Body.linearVelocity;
             if (m_Finished)
             {
@@ -196,7 +206,35 @@ namespace MasonTile.Samples.Platformer
             }
 
             level.ClearAllTiles();
+            if (animateLevelBuild)
+            {
+                // Put the (hidden) player and the camera at the new start so the build plays in view.
+                var startSymbol = legend.GetSymbol(startTile);
+                for (var r = 0; r < parsed.Height; r++)
+                {
+                    var c = parsed.Rows[r].IndexOf(startSymbol);
+                    if (c < 0) continue;
+                    transform.position = level.GetCellCenterWorld(new Vector3Int(origin.x + c, origin.y + parsed.Height - 1 - r, 0));
+                    if (m_Camera != null) m_Camera.Snap();
+                    break;
+                }
+                StartCoroutine(BuildThenBegin(TileBuildAnimation.FromText(level, origin, parsed, legend, BuildOrder.SweepRight, buildSeconds)));
+                return;
+            }
             AsciiMap.Write(level, origin, parsed, legend);
+            BeginLevel();
+        }
+
+        /// <summary>Hides and freezes the player while the level builds itself, then starts the level.</summary>
+        IEnumerator BuildThenBegin(TileBuildAnimation build)
+        {
+            m_Building = true;
+            m_Body.simulated = false;
+            if (m_Renderer != null) m_Renderer.enabled = false;
+            yield return build.Play();
+            m_Building = false;
+            m_Body.simulated = true;
+            if (m_Renderer != null) m_Renderer.enabled = true;
             BeginLevel();
         }
 

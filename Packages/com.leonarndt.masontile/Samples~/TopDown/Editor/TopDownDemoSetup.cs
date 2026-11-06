@@ -30,7 +30,7 @@ namespace MasonTile.Samples.TopDown.Editor
             EditorApplication.delayCall += () =>
             {
                 var root = FindRoot();
-                if (root != null && !File.Exists($"{root}/{k_SceneName}")) Build(root);
+                if (root != null && !File.Exists($"{root}/{k_SceneName}")) Build(root, fromMenu: false);
             };
         }
 
@@ -39,7 +39,7 @@ namespace MasonTile.Samples.TopDown.Editor
         {
             var root = FindRoot();
             if (root == null) Debug.LogError("[MasonTile] Could not find the Top-Down Demo sample folder.");
-            else Build(root);
+            else Build(root, fromMenu: true);
         }
 
         static string FindRoot()
@@ -50,7 +50,8 @@ namespace MasonTile.Samples.TopDown.Editor
             return map == null ? null : Path.GetDirectoryName(Path.GetDirectoryName(map))?.Replace('\\', '/');
         }
 
-        static void Build(string root)
+        /// <param name="fromMenu">Rebuild menu: open the scene and play the build animation.</param>
+        static void Build(string root, bool fromMenu)
         {
             var legend = BuildTiles($"{root}/Tiles");
             var facing = new[] { "down", "up", "left", "right" }
@@ -100,7 +101,7 @@ namespace MasonTile.Samples.TopDown.Editor
             AssetDatabase.SaveAssets();
             Debug.Log($"[MasonTile] Top-Down Demo ready: {scenePath}. The map is {root}/Levels/{k_Map}.txt.",
                 AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath));
-            DemoMenu.ConsumeOpenRequest(DemoMenu.TopDownSample, scenePath);
+            DemoMenu.Present(DemoMenu.TopDownSample, scenePath, open: fromMenu);
         }
 
         // ---------- Art ----------

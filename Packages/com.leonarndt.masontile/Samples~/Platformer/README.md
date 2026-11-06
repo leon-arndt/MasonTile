@@ -14,6 +14,7 @@ art and builds `Platformer Demo.unity` in this folder.
 - Coins, spikes and the flag are tiles that `PlatformerPlayer` looks up under itself. There are no extra GameObjects.
 - Solid tiles have `colliderType = Grid` and collide through a merged `CompositeCollider2D`.
 - R rebuilds the current level from its text, which also brings back collected coins.
+- Each level builds itself left to right with `TileBuildAnimation` (turn off `Animate Level Build` on the Player).
 
 | Symbol | Tile | | Symbol | Tile |
 |---|---|---|---|---|

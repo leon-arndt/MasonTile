@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -24,6 +25,11 @@ namespace MasonTile.Samples.TopDown
         [TextArea(2, 4)] public string[] signTexts;
         [TextArea(2, 4)] public string doorText = "It's locked. Nobody seems to be home.";
 
+        [Header("Map build animation")]
+        [Tooltip("Build the map tile by tile, rippling out from the player, when the scene starts.")]
+        public bool animateMapBuild = true;
+        public float buildSeconds = 1.6f;
+
         SpriteRenderer m_Renderer;
         readonly Dictionary<Vector3Int, string> m_Signs = new();
         Vector3Int m_Cell;
@@ -31,6 +37,7 @@ namespace MasonTile.Samples.TopDown
         bool m_Moving;
         Vector2Int m_Facing = Vector2Int.down;
         string m_Message;
+        bool m_Building;
 
         void Awake() => m_Renderer = GetComponent<SpriteRenderer>();
 
@@ -59,10 +66,20 @@ namespace MasonTile.Samples.TopDown
             if (!foundStart) m_Cell = level.WorldToCell(transform.position);
             transform.position = m_Target = level.GetCellCenterWorld(m_Cell);
             Face(m_Facing);
+
+            if (animateMapBuild) StartCoroutine(BuildMap());
+        }
+
+        IEnumerator BuildMap()
+        {
+            m_Building = true;
+            yield return TileBuildAnimation.Rebuild(level, BuildOrder.Ripple, buildSeconds, m_Cell).Play();
+            m_Building = false;
         }
 
         void Update()
         {
+            if (m_Building) return;
             if (m_Message != null)
             {
                 if (DemoInput.InteractPressed) m_Message = null;

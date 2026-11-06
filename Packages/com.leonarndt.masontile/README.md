@@ -47,7 +47,7 @@ from a `.txt` level file when Play mode starts.
 
 | Assembly | Contents |
 |---|---|
-| `MasonTile.Runtime` | `TilemapOps` (fill, outline, line, flood fill, replace), `AsciiMap` (text read/write), `CaveGenerator`, `TileLegend`, `TileLegendBinding`. Works in builds, e.g. for procedural levels. |
+| `MasonTile.Runtime` | `TilemapOps` (fill, outline, line, flood fill, replace), `AsciiMap` (text read/write), `CaveGenerator`, `TileLegend`, `TileLegendBinding`, `TileBuildAnimation` (place tiles over time with a pop-in effect). Works in builds, e.g. for procedural levels. |
 | `MasonTile.Editor` | `TilemapCommands`, the validated and undoable command layer. Also the text view window, legend builder, placeholder tiles, `PixelCanvas` and `TileSetBuilder` (define a tileset in code), and `SceneBuilder`. |
 | `MasonTile.Agent` | Eight `[AgentTool]`s for Unity AI Assistant. Compiled only when `com.unity.ai.assistant` is installed. |
 | `MasonTile.Tests.Editor` | EditMode tests for operations, text parsing, commands (including undo), and agent tool contracts. |

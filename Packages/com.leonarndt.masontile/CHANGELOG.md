@@ -10,9 +10,12 @@ All notable changes to this package are documented here. The format follows
 - Samples: **Platformer Demo** (two levels, coins, spikes, goal flag; levels after the first load from text at
   runtime) and **Top-Down Demo** (village with grid movement, houses, garden, pond, readable signs). Samples ship
   only text and code and generate their art, tiles and scene on import.
-- Tools > MasonTile > Demos: import or open each sample, plus Rebuild items.
+- Tools > MasonTile > Demos: import or open each sample, plus Rebuild items. Opening or rebuilding a demo plays its
+  build animation in the Scene view.
+- `TileBuildAnimation` (runtime): places tiles over time with a pop-in effect, in sweep, bottom-up, ripple or random
+  order. `TileBuildPreview` plays it in Edit mode. The demos also build their levels this way in Play mode.
 - `PixelCanvas` and `TileSetBuilder`: define placeholder tilesets in code. `SceneBuilder`: build a scene from code
-  without disturbing the open scenes.
+  without disturbing the open scenes (rebuilding a scene that is open replaces it in place).
 
 ### Changed
 - Placeholder tiles use `TileSetBuilder`; wall and water now have grid colliders.

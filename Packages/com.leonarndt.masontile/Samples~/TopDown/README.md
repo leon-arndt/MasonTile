@@ -14,6 +14,7 @@ art and builds `Top-Down Demo.unity` in this folder.
 - Walkable or blocked comes from each tile's `colliderType` (None = walk, Grid = blocked).
   `TopDownPlayer` checks the next cell before stepping, so no physics is involved.
 - Signs get their texts in reading order (top row first, left to right) from `TopDownPlayer.signTexts`.
+- On Play the village ripples into place around the player with `TileBuildAnimation` (turn off `Animate Map Build`).
 
 | Symbol | Tile | | Symbol | Tile |
 |---|---|---|---|---|
