@@ -2,10 +2,10 @@ TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
 TTTggggggggggggggggggggggggggggggggggTTT
 T,,,,,ggggggggggggggggTTTgggggggggggggTT
 T,,,,,gggggggggTTTggggTTTggggggggggTTTgT
-T,,,,,RRRRRRgggTTTgggggggggRRRRRRggTTTgT
-T,,,,,RRRRRRgggTTTgggggggggRRRRRRggTTTgT
-T,,,,,WwWWwWgggggggggggggggWwWWwWggTTTgT
-T,,,,,WWWDWWgggggggggggggggWWWDWWggTTTgT
+T,,,,,RRRRRRgggTTT~~~~gggggRRRRRRggTTTgT
+T,,,,,RRRRRRgggTTT~~~~gggggRRRRRRggTTTgT
+T,,,,,WwWWwWggggg~~~~~~ggggWwWWwWggTTTgT
+T,,,,,WWWDWWggggg~~~~~~ggggWWWDWWggTTTgT
 T,,,,,ggg_ggggggggg__ggggggggg_ggggggggT
 T,,,,,ggg_gggffgggg__ggggffggg_ggggggggT
 T,,,,,ggg_ggggggggg__gfggggggg_gggrggggT
