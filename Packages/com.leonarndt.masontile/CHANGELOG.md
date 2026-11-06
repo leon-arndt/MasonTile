@@ -4,6 +4,25 @@ All notable changes to this package are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the package uses
 [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+- Samples: **Platformer Demo** (two levels, coins, spikes, goal flag; levels after the first load from text at
+  runtime) and **Top-Down Demo** (village with grid movement, houses, garden, pond, readable signs). Samples ship
+  only text and code and generate their art, tiles and scene on import.
+- Tools > MasonTile > Demos: import or open each sample, plus Rebuild items.
+- `PixelCanvas` and `TileSetBuilder`: define placeholder tilesets in code. `SceneBuilder`: build a scene from code
+  without disturbing the open scenes.
+
+### Changed
+- Placeholder tiles use `TileSetBuilder`; wall and water now have grid colliders.
+
+### Removed
+- Tools > MasonTile > Create Demo Tilemap In Scene (replaced by the samples).
+
+### Fixed
+- `TileLegend` clears its lookup cache when Unity reloads the asset.
+
 ## [0.1.1] - 2026-11-06
 
 ### Added

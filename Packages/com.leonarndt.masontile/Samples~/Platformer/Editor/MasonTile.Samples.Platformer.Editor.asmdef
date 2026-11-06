@@ -1,0 +1,20 @@
+{
+    "name": "MasonTile.Samples.Platformer.Editor",
+    "rootNamespace": "MasonTile.Samples.Platformer.Editor",
+    "references": [
+        "MasonTile.Runtime",
+        "MasonTile.Editor",
+        "MasonTile.Samples.Platformer"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

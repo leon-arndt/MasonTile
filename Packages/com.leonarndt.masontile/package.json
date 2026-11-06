@@ -18,5 +18,17 @@
   ],
   "dependencies": {
     "com.unity.2d.tilemap": "1.0.0"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Platformer Demo",
+      "description": "Two-level side-scroller: coins, spikes and a goal flag as tiles, levels as text files loaded at runtime.",
+      "path": "Samples~/Platformer"
+    },
+    {
+      "displayName": "Top-Down Demo",
+      "description": "A village with grid movement, houses, a pond and readable signs. Walkability comes from each tile's collider type.",
+      "path": "Samples~/TopDown"
+    }
+  ]
 }

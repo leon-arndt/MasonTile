@@ -33,7 +33,9 @@ The agent tools turn on automatically when `com.unity.ai.assistant` is installed
 
 ## Quick start
 
-1. **Tools > MasonTile > Create Demo Tilemap In Scene** creates placeholder tiles, a legend, and a sample level.
+1. **Tools > MasonTile > Demos > Platformer Demo** or **Top-Down Demo** imports a playable sample and opens it.
+   Each sample is only text and code; on import it draws its own pixel art and builds its scene.
+   You can also import them from Package Manager > MasonTile > Samples.
 2. **Window > MasonTile > Tilemap Text View**: select a Tilemap, press **Read**, edit the text, press **Apply**. Ctrl+Z works.
 3. With **AI Assistant** in Agent mode, ask for something like *"Add a 6x4 room with a water pool in the middle at x=20, y=0 on Ground"*.
 
@@ -46,7 +48,7 @@ from a `.txt` level file when Play mode starts.
 | Assembly | Contents |
 |---|---|
 | `MasonTile.Runtime` | `TilemapOps` (fill, outline, line, flood fill, replace), `AsciiMap` (text read/write), `CaveGenerator`, `TileLegend`, `TileLegendBinding`. Works in builds, e.g. for procedural levels. |
-| `MasonTile.Editor` | `TilemapCommands`, the validated and undoable command layer. Also the text view window, legend builder, and placeholder tiles. |
+| `MasonTile.Editor` | `TilemapCommands`, the validated and undoable command layer. Also the text view window, legend builder, placeholder tiles, `PixelCanvas` and `TileSetBuilder` (define a tileset in code), and `SceneBuilder`. |
 | `MasonTile.Agent` | Eight `[AgentTool]`s for Unity AI Assistant. Compiled only when `com.unity.ai.assistant` is installed. |
 | `MasonTile.Tests.Editor` | EditMode tests for operations, text parsing, commands (including undo), and agent tool contracts. |
 | `MasonTile.Agent.Tests` | EditMode integration tests that call each agent tool as AI Assistant does: permission checks, denial, errors, undo. Compiled only with `com.unity.ai.assistant`. |

@@ -155,5 +155,8 @@ namespace MasonTile
         }
 
         void OnValidate() => Invalidate();
+
+        // Assets can be unloaded and reloaded (scene changes, reimports); never trust a cache from before.
+        void OnEnable() => Invalidate();
     }
 }
