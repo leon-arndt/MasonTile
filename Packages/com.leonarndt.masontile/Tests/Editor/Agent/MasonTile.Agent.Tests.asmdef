@@ -1,0 +1,36 @@
+{
+    "name": "MasonTile.Agent.Tests",
+    "rootNamespace": "MasonTile.Tests.Agent",
+    "references": [
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner",
+        "MasonTile.Runtime",
+        "MasonTile.Editor",
+        "MasonTile.Agent",
+        "MasonTile.Tests.Editor",
+        "Unity.AI.Assistant.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll",
+        "Newtonsoft.Json.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS",
+        "MASONTILE_AI_ASSISTANT"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.ai.assistant",
+            "expression": "2.0.0",
+            "define": "MASONTILE_AI_ASSISTANT"
+        }
+    ],
+    "noEngineReferences": false
+}

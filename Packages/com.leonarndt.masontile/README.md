@@ -49,6 +49,8 @@ from a `.txt` level file when Play mode starts.
 | `MasonTile.Editor` | `TilemapCommands`, the validated and undoable command layer. Also the text view window, legend builder, and placeholder tiles. |
 | `MasonTile.Agent` | Eight `[AgentTool]`s for Unity AI Assistant. Compiled only when `com.unity.ai.assistant` is installed. |
 | `MasonTile.Tests.Editor` | EditMode tests for operations, text parsing, commands (including undo), and agent tool contracts. |
+| `MasonTile.Agent.Tests` | EditMode integration tests that call each agent tool as AI Assistant does: permission checks, denial, errors, undo. Compiled only with `com.unity.ai.assistant`. |
+| `MasonTile.Tests.Runtime` | PlayMode tests for building a tilemap from a text level when the scene starts. |
 
 ## Conventions
 
@@ -81,8 +83,12 @@ the Test Runner:
 "testables": ["com.leonarndt.masontile"]
 ```
 
-Then run **Window > General > Test Runner > EditMode**, or from a terminal with the Editor open:
+Then use **Window > General > Test Runner** (EditMode and PlayMode tabs), or from a terminal with the Editor open:
 
 ```
-unity command test run --mode EditMode --filter MasonTile.Tests.Editor --filter-type assembly
+unity command test run --mode editor --filter MasonTile --filter-type assembly
+unity command test run --mode playmode --filter MasonTile.Tests.Runtime --filter-type assembly --async-tests true
+unity command test status
 ```
+
+PlayMode runs reload scripts, so start them with `--async-tests` and poll `test status` for the results.
