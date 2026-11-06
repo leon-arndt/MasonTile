@@ -19,9 +19,27 @@ namespace MasonTile.Editor
         TextField m_Text;
         Label m_Status;
         Label m_LegendLabel;
+        Tilemap m_PendingTilemap; // set by ShowFor before CreateGUI has built the fields
 
         [MenuItem("Window/MasonTile/Tilemap Text View")]
         public static void Open() => GetWindow<TilemapTextWindow>("MasonTile Text");
+
+        /// <summary>Opens the window (without stealing focus), targets <paramref name="tilemap"/> and reads it into the text box.</summary>
+        public static TilemapTextWindow ShowFor(Tilemap tilemap)
+        {
+            var window = GetWindow<TilemapTextWindow>("MasonTile Text", false);
+            if (window.m_TilemapField == null) window.m_PendingTilemap = tilemap;
+            else window.Target(tilemap);
+            return window;
+        }
+
+        void Target(Tilemap tilemap)
+        {
+            m_TilemapField.value = tilemap;
+            OnTilemapChanged();
+            RefreshLegendLabel();
+            ReadFromTilemap();
+        }
 
         void CreateGUI()
         {
@@ -58,6 +76,11 @@ namespace MasonTile.Editor
 
             OnSelectionChange();
             RefreshLegendLabel();
+            if (m_PendingTilemap != null)
+            {
+                Target(m_PendingTilemap);
+                m_PendingTilemap = null;
+            }
         }
 
         void OnSelectionChange()

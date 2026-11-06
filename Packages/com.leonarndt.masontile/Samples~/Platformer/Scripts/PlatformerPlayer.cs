@@ -37,7 +37,7 @@ namespace MasonTile.Samples.Platformer
         [Header("Level build animation")]
         [Tooltip("Build each level tile by tile (left to right) when it starts.")]
         public bool animateLevelBuild = true;
-        public float buildSeconds = 1.4f;
+        public float buildSeconds = 3f;
 
         static readonly Vector3[] k_TileProbes = { Vector3.zero, new(0f, -0.4f, 0f), new(0f, 0.4f, 0f) };
 
@@ -52,6 +52,13 @@ namespace MasonTile.Samples.Platformer
         int m_Coins, m_TotalCoins, m_Deaths;
         bool m_Finished;
         bool m_Building;
+
+        // Read-only state for tests, recording autopilots and agents.
+        public bool IsBuilding => m_Building;
+        public bool IsFinished => m_Finished;
+        public int LevelIndex => m_LevelIndex;
+        public int Coins => m_Coins;
+
         Vector3 m_Spawn;
         float m_KillY;
         float m_LastGrounded = -1f, m_LastJumpPressed = -1f;

@@ -2,7 +2,8 @@
     "name": "MasonTile.Editor",
     "rootNamespace": "MasonTile.Editor",
     "references": [
-        "MasonTile.Runtime"
+        "MasonTile.Runtime",
+        "Unity.2D.Tilemap.Editor"
     ],
     "includePlatforms": [
         "Editor"

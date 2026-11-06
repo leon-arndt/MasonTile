@@ -77,9 +77,10 @@ namespace MasonTile.Editor
 
         /// <summary>
         /// Rebuilds the active scene's legend-bound tilemap tile by tile in the Scene view. The end state is
-        /// identical, so the scene is saved afterwards unless it already had unsaved changes.
+        /// identical, so the scene is saved afterwards unless it already had unsaved changes. A non-positive
+        /// <paramref name="seconds"/> uses Preferences > MasonTile > Build animation.
         /// </summary>
-        public static void PlayBuildAnimation(BuildOrder order, char rippleCenterSymbol = '\0', float seconds = 2f)
+        public static void PlayBuildAnimation(BuildOrder order, char rippleCenterSymbol = '\0', float seconds = -1f)
         {
             var binding = Object.FindAnyObjectByType<TileLegendBinding>();
             if (binding == null) return;
@@ -92,6 +93,7 @@ namespace MasonTile.Editor
                     if (tilemap.GetTile(cell) == centerTile) { center = cell; break; }
             }
 
+            if (seconds <= 0f) seconds = MasonTileSettings.BuildAnimationSeconds;
             FrameInSceneView(tilemap);
             var scene = tilemap.gameObject.scene;
             var wasDirty = scene.isDirty;
@@ -108,7 +110,7 @@ namespace MasonTile.Editor
             tilemap.CompressBounds();
             var b = tilemap.localBounds;
             view.in2DMode = true;
-            view.Frame(new Bounds(tilemap.transform.TransformPoint(b.center), b.size + Vector3.one), false);
+            view.Frame(new Bounds(tilemap.transform.TransformPoint(b.center), b.size + Vector3.one), true);
         }
 
         static string FindScene(string folder)

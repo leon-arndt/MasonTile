@@ -16,9 +16,16 @@ All notable changes to this package are documented here. The format follows
   order. `TileBuildPreview` plays it in Edit mode. The demos also build their levels this way in Play mode.
 - `PixelCanvas` and `TileSetBuilder`: define placeholder tilesets in code. `SceneBuilder`: build a scene from code
   without disturbing the open scenes (rebuilding a scene that is open replaces it in place).
+- `TilePaletteBuilder.CreateOrUpdate`: builds a Tile Palette asset from a `TileLegend`.
+- `TilemapTextWindow.ShowFor(tilemap)`: opens the Text View on a tilemap and reads it.
+- Edit > Preferences > MasonTile: length of the Scene-view build animation (default 4 s).
+- Read-only state on the demo players (`IsBuilding`, `LevelIndex`, `Cell`, `Message`, ...) for tests and automation.
 
 ### Changed
 - Placeholder tiles use `TileSetBuilder`; wall and water now have grid colliders.
+- Slower default builds: 4 s in the Scene view, 3 s (platformer) and 3.5 s (village) in Play mode. Each tile's pop
+  scales with the build length (0.22 to 0.6 s), so slow builds don't look stretched.
+- The Demos menu frames the level in the Scene view instantly instead of animating the zoom.
 
 ### Removed
 - Tools > MasonTile > Create Demo Tilemap In Scene (replaced by the samples).

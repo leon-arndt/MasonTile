@@ -28,7 +28,7 @@ namespace MasonTile.Samples.TopDown
         [Header("Map build animation")]
         [Tooltip("Build the map tile by tile, rippling out from the player, when the scene starts.")]
         public bool animateMapBuild = true;
-        public float buildSeconds = 1.6f;
+        public float buildSeconds = 3.5f;
 
         SpriteRenderer m_Renderer;
         readonly Dictionary<Vector3Int, string> m_Signs = new();
@@ -38,6 +38,13 @@ namespace MasonTile.Samples.TopDown
         Vector2Int m_Facing = Vector2Int.down;
         string m_Message;
         bool m_Building;
+
+        // Read-only state for tests, recording autopilots and agents.
+        public bool IsBuilding => m_Building;
+        public bool IsMoving => m_Moving;
+        public Vector3Int Cell => m_Cell;
+        public string Message => m_Message;
+
 
         void Awake() => m_Renderer = GetComponent<SpriteRenderer>();
 

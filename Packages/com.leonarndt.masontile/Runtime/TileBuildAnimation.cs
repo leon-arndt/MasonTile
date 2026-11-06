@@ -53,7 +53,7 @@ namespace MasonTile
 
         public Tilemap Tilemap { get; }
 
-        /// <summary>Seconds each tile takes to pop in.</summary>
+        /// <summary>Seconds each tile takes to pop in. Scales with the build length (0.22 to 0.6 s).</summary>
         public float PopSeconds { get; set; } = 0.22f;
 
         public int TotalCells => m_Placements.Count;
@@ -81,7 +81,7 @@ namespace MasonTile
                 if (tile != null) cells.Add((cell, tile));
             }
             tilemap.ClearAllTiles();
-            return new TileBuildAnimation(tilemap, Schedule(cells, order, seconds, rippleCenter));
+            return Create(tilemap, cells, order, seconds, rippleCenter);
         }
 
         /// <summary>
@@ -102,7 +102,14 @@ namespace MasonTile
                     cells.Add((new Vector3Int(origin.x + c, y, 0), tile));
                 }
             }
-            return new TileBuildAnimation(tilemap, Schedule(cells, order, seconds, rippleCenter));
+            return Create(tilemap, cells, order, seconds, rippleCenter);
+        }
+
+        static TileBuildAnimation Create(Tilemap tilemap, List<(Vector3Int, TileBase)> cells, BuildOrder order, float seconds, Vector3Int? rippleCenter)
+        {
+            // Longer builds get slower pops, so a slow build reads as deliberate rather than as a stretched fast one.
+            var pop = Mathf.Clamp(seconds * 0.12f, 0.22f, 0.6f);
+            return new TileBuildAnimation(tilemap, Schedule(cells, order, seconds - pop, rippleCenter)) { PopSeconds = pop };
         }
 
         /// <summary>Advances the animation to <paramref name="now"/> (seconds on any clock; the first call starts it).</summary>
@@ -180,7 +187,7 @@ namespace MasonTile
             return Matrix4x4.TRS(new Vector3(0f, drop, 0f), Quaternion.identity, new Vector3(scale, scale, 1f));
         }
 
-        static List<Placement> Schedule(List<(Vector3Int cell, TileBase tile)> cells, BuildOrder order, float seconds, Vector3Int? rippleCenter)
+        static List<Placement> Schedule(List<(Vector3Int cell, TileBase tile)> cells, BuildOrder order, float spreadSeconds, Vector3Int? rippleCenter)
         {
             var result = new List<Placement>(cells.Count);
             if (cells.Count == 0) return result;
@@ -208,7 +215,7 @@ namespace MasonTile
                 maxKey = Mathf.Max(maxKey, keys[i]);
             }
 
-            var spread = Mathf.Max(0f, seconds - 0.22f);
+            var spread = Mathf.Max(0f, spreadSeconds);
             for (var i = 0; i < cells.Count; i++)
                 result.Add(new Placement(cells[i].cell, cells[i].tile, maxKey > 0f ? keys[i] / maxKey * spread : 0f));
             result.Sort((a, b) => a.Delay.CompareTo(b.Delay));
