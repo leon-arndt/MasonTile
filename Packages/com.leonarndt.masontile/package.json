@@ -1,6 +1,6 @@
 {
   "name": "com.leonarndt.masontile",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "displayName": "MasonTile",
   "description": "Text-first tilemap editing for creators and LLM agents. Read and write tilemaps as character grids, undoable fill/line/flood-fill/cave commands, a text view window, and Unity AI Assistant tools (enabled automatically when com.unity.ai.assistant is installed).",
   "unity": "6000.4",

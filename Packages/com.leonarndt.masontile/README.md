@@ -20,13 +20,13 @@ commands, and hand those same commands to Unity AI Assistant as agent tools.
 Requires Unity 6000.4 or newer. In Package Manager choose **Install package from git URL** and enter:
 
 ```
-https://github.com/leon-arndt/UnityJam2026.git?path=/Packages/com.leonarndt.masontile#v0.1.0
+https://github.com/leon-arndt/UnityJam2026.git?path=/Packages/com.leonarndt.masontile#v0.1.1
 ```
 
 Or add it to `Packages/manifest.json`:
 
 ```json
-"com.leonarndt.masontile": "https://github.com/leon-arndt/UnityJam2026.git?path=/Packages/com.leonarndt.masontile#v0.1.0"
+"com.leonarndt.masontile": "https://github.com/leon-arndt/UnityJam2026.git?path=/Packages/com.leonarndt.masontile#v0.1.1"
 ```
 
 The agent tools turn on automatically when `com.unity.ai.assistant` is installed. Everything else works without it.
