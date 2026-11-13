@@ -94,3 +94,19 @@ unity command test status
 ```
 
 PlayMode runs reload scripts, so start them with `--async-tests` and poll `test status` for the results.
+
+## Benchmarking the agent tools
+
+`Bench/` holds the MasonTile suite for [Unity Agent Bench](../com.leonarndt.agentbench/README.md): 13 creator
+tasks (build a room from a spec, centre a pool in an existing room, seal a leaking enclosure before flooding it,
+stamp a layout by its top-left corner, connect two rooms with a corridor, and more), each with a checker and a
+reference solution. Four of them are deliberately hard (a map wider than one read, an enclosure with hidden gaps,
+the shortest route through a maze, a mirrored copy of a room), so the suite has room to show improvements. The assembly compiles only when both AI Assistant and the bench package are installed.
+
+```
+python3 Packages/com.leonarndt.agentbench/Harness~/agentbench.py replay           # reference solutions, no model
+python3 Packages/com.leonarndt.agentbench/Harness~/agentbench.py run --trials 3   # Claude Code on every task
+```
+
+Before you change a tool's behaviour, description or parameters, run the suite on `main` and on your change, and
+`compare` the two runs. See the bench README for the workflow.

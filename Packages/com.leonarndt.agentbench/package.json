@@ -1,0 +1,21 @@
+{
+  "name": "com.leonarndt.agentbench",
+  "version": "0.1.0",
+  "displayName": "Unity Agent Bench",
+  "description": "Benchmark Unity AI Assistant [AgentTool]s against creator tasks. Tier 1 replays a reference solution per task in EditMode tests; tier 2 runs a real agent (Claude Code, headless) against the same tasks through the Pipeline server and scores the result.",
+  "unity": "6000.4",
+  "author": {
+    "name": "Leon Arndt",
+    "url": "https://github.com/leon-arndt"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "benchmark",
+    "eval"
+  ],
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.2",
+    "com.unity.modules.tilemap": "1.0.0"
+  }
+}

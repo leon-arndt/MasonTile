@@ -1,0 +1,35 @@
+{
+    "name": "AgentBench.Pipeline",
+    "rootNamespace": "AgentBench.Pipeline",
+    "references": [
+        "AgentBench.Editor",
+        "Unity.Pipeline.Attributes"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "AGENTBENCH_AI_ASSISTANT",
+        "AGENTBENCH_PIPELINE"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.ai.assistant",
+            "expression": "2.0.0",
+            "define": "AGENTBENCH_AI_ASSISTANT"
+        },
+        {
+            "name": "com.unity.pipeline",
+            "expression": "0.10.0-exp.1",
+            "define": "AGENTBENCH_PIPELINE"
+        }
+    ],
+    "noEngineReferences": false
+}

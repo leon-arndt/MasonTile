@@ -20,6 +20,8 @@ All notable changes to this package are documented here. The format follows
 - `TilemapTextWindow.ShowFor(tilemap)`: opens the Text View on a tilemap and reads it.
 - Edit > Preferences > MasonTile: length of the Scene-view build animation (default 4 s).
 - Read-only state on the demo players (`IsBuilding`, `LevelIndex`, `Cell`, `Message`, ...) for tests and automation.
+- `MasonTile.Bench`: a [Unity Agent Bench](../com.leonarndt.agentbench/README.md) suite of 13 creator tasks for the
+  agent tools, each with a checker and a reference solution. Compiled only with `com.leonarndt.agentbench`.
 
 ### Changed
 - Placeholder tiles use `TileSetBuilder`; wall and water now have grid colliders.

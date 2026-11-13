@@ -1,0 +1,36 @@
+{
+    "name": "MasonTile.Bench",
+    "rootNamespace": "MasonTile.Bench",
+    "references": [
+        "MasonTile.Runtime",
+        "MasonTile.Editor",
+        "AgentBench.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "MASONTILE_AI_ASSISTANT",
+        "MASONTILE_AGENT_BENCH"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.ai.assistant",
+            "expression": "2.0.0",
+            "define": "MASONTILE_AI_ASSISTANT"
+        },
+        {
+            "name": "com.leonarndt.agentbench",
+            "expression": "0.1.0",
+            "define": "MASONTILE_AGENT_BENCH"
+        }
+    ],
+    "noEngineReferences": false
+}

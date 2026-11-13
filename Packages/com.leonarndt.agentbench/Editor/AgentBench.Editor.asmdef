@@ -1,0 +1,28 @@
+{
+    "name": "AgentBench.Editor",
+    "rootNamespace": "AgentBench",
+    "references": [
+        "Unity.AI.Assistant.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Newtonsoft.Json.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "AGENTBENCH_AI_ASSISTANT"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.ai.assistant",
+            "expression": "2.0.0",
+            "define": "AGENTBENCH_AI_ASSISTANT"
+        }
+    ],
+    "noEngineReferences": false
+}
