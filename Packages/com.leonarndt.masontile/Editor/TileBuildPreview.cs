@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
+#if UNITY_6000_7_OR_NEWER
 using Unity.Scripting.LifecycleManagement;
+#endif
 
 namespace MasonTile.Editor
 {
@@ -13,13 +15,15 @@ namespace MasonTile.Editor
     /// entering Play Mode so a level is never left half-built.
     /// </summary>
     [InitializeOnLoad]
+#if UNITY_6000_7_OR_NEWER
     [NoAutoStaticsCleanup]
+#endif
     public static class TileBuildPreview
     {
         // Static by necessity: an edit-mode animation queue has no instance to live on. Cleaned up by hand
         // rather than by AutoStaticsCleanup, because FinishAll must complete each animation and run its
         // callback, not just empty the list. It runs on ExitingEditMode as well as before a script reload,
-        // because with domain reload disabled (see CLAUDE.md) entering Play Mode no longer triggers a reload.
+        // because with domain reload disabled (Enter Play Mode Options) entering Play Mode no longer triggers a reload.
         static readonly List<(TileBuildAnimation animation, Action onComplete)> s_Active = new();
 
         static TileBuildPreview()

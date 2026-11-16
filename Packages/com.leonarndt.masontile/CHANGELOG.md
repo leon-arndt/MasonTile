@@ -6,6 +6,11 @@ All notable changes to this package are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-16
+
+The package now lives in its own repository, https://github.com/leon-arndt/MasonTile, under the MIT license.
+Install it from there with the tag `masontile-v0.2.0`.
+
 ### Added
 - Samples: **Platformer Demo** (two levels, coins, spikes, goal flag; levels after the first load from text at
   runtime) and **Top-Down Demo** (village with grid movement, houses, garden, pond, readable signs). Samples ship
@@ -34,6 +39,8 @@ All notable changes to this package are documented here. The format follows
 
 ### Fixed
 - `TileLegend` clears its lookup cache when Unity reloads the asset.
+- `TileBuildPreview` compiles on Unity versions before 6000.7 again; the statics-cleanup attribute is only applied
+  where it exists.
 
 ## [0.1.1] - 2026-11-06
 
@@ -43,8 +50,8 @@ All notable changes to this package are documented here. The format follows
 - PlayMode tests (`MasonTile.Tests.Runtime`) for `TileLegendBinding` building a level on Awake.
 
 ### Fixed
-- The `v0.1.0` tag points at a commit that only contains the file moves of the rename, so it does not
-  install. Use `v0.1.1` or later.
+- 0.1.0 was tagged on a commit that only contains the file moves of the rename, so it does not install.
+  Use 0.1.1 or later (tag `masontile-v0.1.1`).
 
 ## [0.1.0] - 2026-11-05
 

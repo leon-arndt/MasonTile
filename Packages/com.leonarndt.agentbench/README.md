@@ -46,6 +46,18 @@ agentbench.py ──check──▶ task checker ──teardown──▶ your sce
 - **The agent is isolated.** Claude Code runs from an empty folder with built-in tools off (`--tools ""`), only the
   bench's MCP server (`--strict-mcp-config`), the suite's system prompt, and no user settings, hooks or plugins.
 
+## Install
+
+In Package Manager choose **Install package from git URL** and enter:
+
+```
+https://github.com/leon-arndt/MasonTile.git?path=/Packages/com.leonarndt.agentbench#agentbench-v0.1.0
+```
+
+Add `"testables": ["com.leonarndt.agentbench"]` to `Packages/manifest.json` to see the tier 1 tests in the Test
+Runner. To benchmark MasonTile's tools as well, install
+[MasonTile](../com.leonarndt.masontile/README.md#install); its suite compiles once both packages are present.
+
 ## Requirements
 
 - `com.unity.ai.assistant` 2.x (the tools under test) and `com.unity.pipeline` (Editor access from the harness).
@@ -55,10 +67,11 @@ agentbench.py ──check──▶ task checker ──teardown──▶ your sce
 
 ## Usage
 
-Run from anywhere inside the Unity project:
+Run from the Unity project folder. The harness ships inside the package: under `Packages/` when the package is
+embedded, under `Library/PackageCache/` when it was installed from git.
 
 ```bash
-H=Packages/com.leonarndt.agentbench/Harness~/agentbench.py
+H=$(ls -d Packages/com.leonarndt.agentbench Library/PackageCache/com.leonarndt.agentbench@* 2>/dev/null | head -1)/Harness~/agentbench.py
 
 python3 $H list --prompts                     # suites, tasks, tags, prompts
 python3 $H replay                             # tier 1, exit code 1 on any failure
@@ -107,7 +120,7 @@ unity command agentbench monitor --layout right                    # open it, fl
 unity command agentbench monitor --replay masontile --pace 0.5     # slow replay of a suite
 ```
 
-`Assets/Showcase/Tools~/record-agentbench.py` in this repo uses this to record a demo video.
+Together with `--hold`, this is enough to record a demo video of a run.
 
 ### Verifying a change to the tools
 

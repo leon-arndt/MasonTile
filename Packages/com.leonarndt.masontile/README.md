@@ -20,13 +20,13 @@ commands, and hand those same commands to Unity AI Assistant as agent tools.
 Requires Unity 6000.4 or newer. In Package Manager choose **Install package from git URL** and enter:
 
 ```
-https://github.com/leon-arndt/UnityJam2026.git?path=/Packages/com.leonarndt.masontile#v0.1.1
+https://github.com/leon-arndt/MasonTile.git?path=/Packages/com.leonarndt.masontile#masontile-v0.2.0
 ```
 
 Or add it to `Packages/manifest.json`:
 
 ```json
-"com.leonarndt.masontile": "https://github.com/leon-arndt/UnityJam2026.git?path=/Packages/com.leonarndt.masontile#v0.1.1"
+"com.leonarndt.masontile": "https://github.com/leon-arndt/MasonTile.git?path=/Packages/com.leonarndt.masontile#masontile-v0.2.0"
 ```
 
 The agent tools turn on automatically when `com.unity.ai.assistant` is installed. Everything else works without it.
@@ -103,9 +103,10 @@ stamp a layout by its top-left corner, connect two rooms with a corridor, and mo
 reference solution. Four of them are deliberately hard (a map wider than one read, an enclosure with hidden gaps,
 the shortest route through a maze, a mirrored copy of a room), so the suite has room to show improvements. The assembly compiles only when both AI Assistant and the bench package are installed.
 
-```
-python3 Packages/com.leonarndt.agentbench/Harness~/agentbench.py replay           # reference solutions, no model
-python3 Packages/com.leonarndt.agentbench/Harness~/agentbench.py run --trials 3   # Claude Code on every task
+```bash
+H=$(ls -d Packages/com.leonarndt.agentbench Library/PackageCache/com.leonarndt.agentbench@* 2>/dev/null | head -1)/Harness~/agentbench.py
+python3 $H replay           # reference solutions, no model
+python3 $H run --trials 3   # Claude Code on every task
 ```
 
 Before you change a tool's behaviour, description or parameters, run the suite on `main` and on your change, and

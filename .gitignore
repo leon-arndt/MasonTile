@@ -1,0 +1,26 @@
+# Unity (for a development host project, should one be added)
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+*.csproj
+*.sln
+*.slnx
+*.log
+
+# IDEs and OS
+.vs/
+.idea/
+.vscode/
+*.DotSettings.user
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Unity Agent Bench run output
+/AgentBenchRuns/
